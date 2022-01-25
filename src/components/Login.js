@@ -71,7 +71,7 @@ const Login = () => {
                 console.log("Codigo de error: ",error.response.status);
                 document.getElementById("send-btn").disabled = false;
                 document.getElementById("send-btn").innerHTML = "Enviar";
-                swal("Los datos ingresados son incorrectos");
+                swal("Datos incorrectos", "El mail y/o contraseña ingresados son incorrectos", "info");
             })
         }
     }
