@@ -1,13 +1,19 @@
 import './App.css';
-import Login from "./components/Login";
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
-    <div className="App">
-      <div className="d-flex justify-content-center vh-100 align-items-center">
-        <Login/>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+      <Route path="/" element={<HomePage/>}/>
+        <Route path="/home" element={<HomePage/>}/>
+        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="*" element={<NotFoundPage/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

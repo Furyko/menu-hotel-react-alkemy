@@ -3,6 +3,7 @@ import axios from 'axios';
 import Input from "./Input";
 import swal from 'sweetalert';
 import "./Login.css";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [ email, setEmail ] = useState('');
@@ -11,6 +12,7 @@ const Login = () => {
     const [ emailError, setEmailError] = useState(true);
     const [ token, setToken] = useState('');
     const [ logedIn, setLogedIn ] = useState(false);
+    let navigate = useNavigate();
 
     function handleChange(name, value) {
         if(name === 'email') {
@@ -29,8 +31,6 @@ const Login = () => {
                 setPasswordError(true);
             }
         }
-        console.log("emailError: ",emailError)
-        console.log("passwordError: ",passwordError)
         if (!emailError && !passwordError) {
             document.getElementById("error-message").innerHTML = "";
         }
@@ -60,11 +60,13 @@ const Login = () => {
             .then(res => {
                 if (res.status === 200) {
                     const data = res.data;
+                    localStorage.setItem("token", res.data.token);
                     setToken(data.token);
                     console.log(res);
                     console.log(token);
                     setLogedIn(true);
                     console.log("Sesion iniciada con exito.");
+                    navigate("/home");
                 }
             })
             .catch(error => {
@@ -79,7 +81,7 @@ const Login = () => {
     return (
     <div className="card" style={{minWidth: "320px"}}>
         <form action="">
-            <div className="card-header">
+            <div className="card-header d-flex justify-content-center">
                 <span>Login</span>
             </div>
             <div className="card-body">
@@ -101,7 +103,7 @@ const Login = () => {
                 handleChange={handleChange}/>
                 <span className='error-message' id="error-message"></span>
             </div>
-            <div className='card-footer'>
+            <div className='card-footer d-flex justify-content-center'>
                 <button className="btn btn-danger" onClick={checkFields} id="send-btn">Enviar</button>
             </div>
         </form>
