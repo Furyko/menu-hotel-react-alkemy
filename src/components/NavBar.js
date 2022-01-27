@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function NavBar() {
+function NavBar(param = []) {
     let navigate = useNavigate();
 
     function logout() {
@@ -10,12 +10,12 @@ function NavBar() {
     }
     return (
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Home</a>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <div className="container-fluid">
+                    <span className="navbar-brand">{param.page}</span>
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                        <button className="nav-link btn" type="button" onClick={logout}>Logout</button>
+                            <button className="nav-link btn" type="button" onClick={logout}>Logout</button>
                         </li>
                     </ul>
                 </div>
