@@ -43,7 +43,7 @@ function HomePage() {
                     </div>
                     <div className="container">
                         <div className="row justify-content-md-center">
-                            <div className="col col-md-auto">
+                            <div className="col col-4">
                                 <Formik initialValues={{
                                     busqueda: 'Burger'
                                 }}
@@ -69,22 +69,26 @@ function HomePage() {
                                 }}
                                 >
                                     {( {values, touched, errors, handleSubmit, handleChange, handleBlur} ) => (
-                                    <form onSubmit={handleSubmit}>
-                                        <div className="mb-3">
-                                            <label htmlFor="busqueda">Busqueda</label>
-                                            <input 
-                                                type="text"
-                                                id="busqueda"
-                                                name="busqueda"
-                                                placeholder="Realice una busqueda"
-                                                value={values.busqueda}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                            />
-                                            {touched.busqueda && errors.busqueda && <div className="">{errors.busqueda}</div>}
-                                            <button type="submit" className="btn btn-primary">Buscar</button>
-                                        </div>
-                                    </form>
+                                    <div className="card mt-4">
+                                        <form onSubmit={handleSubmit}>
+                                            <div className="m-3 row">
+                                                <label htmlFor="busqueda" className='mb-2'>Buscador de platos</label>
+                                                <input 
+                                                    type="text"
+                                                    id="busqueda"
+                                                    name="busqueda"
+                                                    placeholder="Realice una busqueda"
+                                                    value={values.busqueda}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    className="mb-2"
+                                                />
+                                                {touched.busqueda && errors.busqueda && <div className="">
+                                                    {errors.busqueda}</div>}
+                                                <button type="submit" className="btn btn-primary">Buscar</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                     )}
                                 </Formik>
                             </div>

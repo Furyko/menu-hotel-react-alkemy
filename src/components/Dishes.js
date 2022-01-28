@@ -26,14 +26,16 @@ class Dishes extends Component {
                             <div className="card-body">
                                 <h5 className="card-title d-flex justify-content-center">{item.title}</h5>
                                 <img src={item.image} alt="Este plato no tiene imagen." style={{maxWidth: "260px"}}/>
-                                <hr/>
+                                {item.precio ? 
+                                <div><hr/>
                                 <p>Precio: {item.precio}</p>
-                                <p>Healt Score: {item.healtScore}</p>
+                                <p>Healt Score: {item.healtScore}</p></div> : <div></div>}
                                 {item.vegano ? <p className='badge bg-success text-wrap'>Vegano</p> : <div></div>}
                             </div>
                             <div className='card-footer'>
-                                <button className='btn btn-secondary'>Mostrar caracteristicas</button>
-                                <button className='btn btn-danger' onClick={this.removeDish.bind(this, key)}>Eliminar</button>
+                                {item.precio ? <div><button className='btn btn-secondary'>Mostrar caracteristicas</button>
+                                <button className='btn btn-danger' onClick={this.removeDish.bind(this, key)}>Eliminar</button></div> : 
+                                <div><button className="btn btn-success">Añadir al menú</button></div>}
                             </div>
                         </div>
                     </div>
