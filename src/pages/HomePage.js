@@ -45,7 +45,7 @@ function HomePage() {
                         <div className="row justify-content-md-center">
                             <div className="col col-4">
                                 <Formik initialValues={{
-                                    busqueda: 'Burger'
+                                    busqueda: ''
                                 }}
                                 validate={(valores) => {
                                     let errores ={};
@@ -69,7 +69,7 @@ function HomePage() {
                                 }}
                                 >
                                     {( {values, touched, errors, handleSubmit, handleChange, handleBlur} ) => (
-                                    <div className="card mt-4">
+                                    <div className="card mt-4 mb-4">
                                         <form onSubmit={handleSubmit}>
                                             <div className="m-3 row">
                                                 <label htmlFor="busqueda" className='mb-2'>Buscador de platos</label>
@@ -77,7 +77,7 @@ function HomePage() {
                                                     type="text"
                                                     id="busqueda"
                                                     name="busqueda"
-                                                    placeholder="Realice una busqueda"
+                                                    placeholder="Realice una busqueda (ej: pizza)"
                                                     value={values.busqueda}
                                                     onChange={handleChange}
                                                     onBlur={handleBlur}
