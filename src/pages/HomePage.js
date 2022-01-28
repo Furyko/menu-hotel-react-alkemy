@@ -2,33 +2,38 @@ import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import axios from 'axios';
-import Dishes from '../components/Dishes';
+import DishesList from '../components/DishesList';
+import Menu from '../components/Menu';
 
 function HomePage() {
     let navigate = useNavigate();
     const token = localStorage.getItem('token');
 
-    const [dishes, setDishes] = useState([]);
-
-    const getDishes = () => {
-        //axios.get("https://api.spoonacular.com/food/menuItems/search?query=burger&number=2&apiKey=609bc111dbba458da19dea51dc558373")
-        axios.get("https://rickandmortyapi.com/api/character")
-        .then(res => {
-            //console.log(res.data.menuItems);
-            //setDishes(res.data.menuItems);
-            //setDishes(res.data.results);
-            //console.log(res.data.results);
-            console.log(dishes);
-        })
-        .catch(error => console.log(error))
-    }
+    const [dishesData, setDishesData] = useState(null);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         if (!localStorage.getItem('token')) {
             return navigate("/login");
         }
-       getDishes();
     }, []);
+
+    function handleChange(e) {
+        setSearch(e.target.value);
+        console.log("entrada: ",search);
+    }
+
+    function getDishesData() {
+        axios.get("https://api.spoonacular.com/recipes/complexSearch?apiKey=609bc111dbba458da19dea51dc558373&maxFat=25&number=4", { params: { query: search }})
+        .then(res => {
+            setDishesData(res.data);
+            console.log(res.data);
+            console.log("busqueda: ", search);
+        })
+        .catch(error => {
+            console.log("error: ", error);
+        });
+    }
 
     return (
         <div>
@@ -38,7 +43,19 @@ function HomePage() {
                     <div className='d-flex justify-content-center'>
                         <h1 className='mt-4'>¡Bienvenido!</h1>
                     </div>
-                <Dishes dishes={dishes}/>
+                    <div><Menu/></div>
+                    <div className="row">
+                        <div className="col">
+                            <section className="controls">
+                                <input 
+                                type="text"
+                                placeholder="Realice una busqueda"
+                                onChange={handleChange}/>
+                            </section>
+                            <button onClick={getDishesData}>Buscar</button>
+                        </div>
+                        <div className='col'>{dishesData && <DishesList dishesList={dishesData}/>}</div>
+                    </div>
             </div> : <div></div>
             }
         </div>
