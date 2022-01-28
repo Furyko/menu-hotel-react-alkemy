@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Input from "./Input";
 import swal from 'sweetalert';
-import "./Login.css";
 import { useNavigate } from 'react-router-dom';
+import "./Login.css";
 
 const Login = () => {
     const [ email, setEmail ] = useState('');
@@ -16,7 +16,6 @@ const Login = () => {
 
     function handleChange(name, value) {
         if(name === 'email') {
-            console.log("length:", value.length)
             if(value.length > 0) {
                 setEmailError(false);
                 setEmail(value);
@@ -40,10 +39,8 @@ const Login = () => {
         e.preventDefault();
         if (emailError || passwordError) {
             document.getElementById("error-message").innerHTML = "Todos los campos son obligatorios";
-            console.log("Sin email o sin contraseña :/")
         } else {
             handleSubmit();
-            console.log("Con email y contraseña :D");
         }
     }
 
@@ -52,7 +49,6 @@ const Login = () => {
         document.getElementById("send-btn").innerHTML = "Enviando...";
         let account = { email, password };
         if(account) {
-            console.log("account:", account);
             axios.post("http://challenge-react.alkemy.org/", {
             email: email,
             password: password
@@ -62,10 +58,7 @@ const Login = () => {
                     const data = res.data;
                     localStorage.setItem("token", res.data.token);
                     setToken(data.token);
-                    console.log(res);
-                    console.log(token);
                     setLogedIn(true);
-                    console.log("Sesion iniciada con exito.");
                     navigate("/home");
                 }
             })

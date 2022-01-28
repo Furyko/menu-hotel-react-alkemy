@@ -10,6 +10,7 @@ class Menu extends Component {
             menu: menu.menu
         }
     }
+
     render() {
         const menuLength = this.state.menu.length > 0
         const emptyMenu = {
@@ -24,7 +25,7 @@ class Menu extends Component {
             ]}
         return (
             <div>
-                { menuLength ? <Dishes dishes={this.state.menu}/> : <Dishes dishes={emptyMenu.menu}/>}
+                { menuLength ? <Dishes dishes={this.state.menu} addMethod={this.addDishToMenu}/> : <Dishes dishes={emptyMenu.menu}/>}
             </div>
         )
     }

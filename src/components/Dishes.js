@@ -6,15 +6,19 @@ class Dishes extends Component {
         this.state = {
             dishes: props.dishes
         };
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     removeDish(index) {
-        console.log(index);
         this.setState({
             dishes: this.state.dishes.filter((e, i) => {
                 return i !== index
             })
         })
+    }
+
+    handleSubmit(item) {
+        console.log(item);
     }
 
     render() {
@@ -34,8 +38,8 @@ class Dishes extends Component {
                             </div>
                             <div className='card-footer'>
                                 {item.precio ? <div><button className='btn btn-secondary'>Mostrar caracteristicas</button>
-                                <button className='btn btn-danger' onClick={this.removeDish.bind(this, key)}>Eliminar</button></div> : 
-                                <div><button className="btn btn-success">Añadir al menú</button></div>}
+                                <button id="delete_dish" className='btn btn-danger' onClick={this.removeDish.bind(this, key)}>Eliminar</button></div> : 
+                                <div><button id='add_dish' className="btn btn-success" onClick={this.handleSubmit.bind(this, item)}>Añadir al menú</button></div>}
                             </div>
                         </div>
                     </div>

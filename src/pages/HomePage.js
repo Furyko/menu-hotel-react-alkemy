@@ -2,9 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import axios from 'axios';
-import DishesList from '../components/DishesList';
+import Dishes from '../components/Dishes';
 import Menu from '../components/Menu';
-import DishesForm from '../components/DishesForm';
 import { Formik } from 'formik';
 
 function HomePage() {
@@ -18,16 +17,7 @@ function HomePage() {
         if (!localStorage.getItem('token')) {
             return navigate("/login");
         }
-    }, []);
-
-    function handleChange(e) {
-        setSearch(e.target.value);
-        console.log("entrada: ",search);
-    }
-
-    function getDishesData() {
-        
-    }
+    }, [navigate]);
 
     return (
         <div>
@@ -48,9 +38,8 @@ function HomePage() {
                                     busqueda: ''
                                 }}
                                 validate={(valores) => {
-                                    let errores ={};
+                                    let errores = {};
                                     if(valores.busqueda.length<2) {
-                                        console.log("el campo debe ser mas largo");
                                         errores.busqueda = 'El campo debe tener 2 o mas caracteres.'
                                     }
                                     return errores;
@@ -61,7 +50,6 @@ function HomePage() {
                                     .then(res => {
                                         setDishesData(res.data);
                                         console.log(res.data);
-                                        console.log("busqueda: ", valores.busqueda);
                                     })
                                     .catch(error => {
                                         console.log("error: ", error);
@@ -83,7 +71,7 @@ function HomePage() {
                                                     onBlur={handleBlur}
                                                     className="mb-2"
                                                 />
-                                                {touched.busqueda && errors.busqueda && <div className="">
+                                                {touched.busqueda && errors.busqueda && <div className="text-danger">
                                                     {errors.busqueda}</div>}
                                                 <button type="submit" className="btn btn-primary">Buscar</button>
                                             </div>
@@ -93,7 +81,10 @@ function HomePage() {
                                 </Formik>
                             </div>
                             <div className='col'>
-                                {dishesData && <DishesList dishesList={dishesData}/>}
+                                {dishesData && 
+                                <div className="row">
+                                    <Dishes dishes={dishesData.results}/>
+                                </div>}
                             </div>
                         </div>
                     </div>
