@@ -27,34 +27,6 @@
             "precio": 40.5,
             "healtScore": 29,
             "vegano": true
-        },
-        {
-            "title": "Plato 4",
-            "image": "https://spoonacular.com/recipeImages/654857-312x231.jpg",
-            "precio": 40.5,
-            "healtScore": 29,
-            "vegano": true
-        },
-        {
-            "title": "Plato 4",
-            "image": "https://spoonacular.com/recipeImages/654857-312x231.jpg",
-            "precio": 40.5,
-            "healtScore": 29,
-            "vegano": true
-        },
-        {
-            "title": "Plato 4",
-            "image": "https://spoonacular.com/recipeImages/654857-312x231.jpg",
-            "precio": 40.5,
-            "healtScore": 29,
-            "vegano": true
-        },
-        {
-            "title": "Plato 4",
-            "image": "https://spoonacular.com/recipeImages/654857-312x231.jpg",
-            "precio": 40.5,
-            "healtScore": 29,
-            "vegano": true
         }
     ]
 }
