@@ -48,6 +48,7 @@ function HomePage() {
                                     setSearch(valores.busqueda);
                                     axios.get("https://api.spoonacular.com/recipes/complexSearch?apiKey=609bc111dbba458da19dea51dc558373&maxFat=25&number=4", { params: { query: valores.busqueda }})
                                     .then(res => {
+                                        setDishesData(null);
                                         setDishesData(res.data);
                                         console.log(res.data);
                                     })
