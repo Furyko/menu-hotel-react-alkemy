@@ -5,6 +5,7 @@ import axios from 'axios';
 import Dishes from '../components/Dishes';
 import Menu from '../components/Menu';
 import { Formik } from 'formik';
+import swal from 'sweetalert';
 
 function HomePage() {
     let navigate = useNavigate();
@@ -46,7 +47,7 @@ function HomePage() {
                                 }}
                                 onSubmit={(valores) => {
                                     setSearch(valores.busqueda);
-                                    axios.get("https://api.spoonacular.com/recipes/complexSearch?apiKey=609bc111dbba458da19dea51dc558373&maxFat=25&number=4", { params: { query: valores.busqueda }})
+                                    axios.get("https://api.spoonacular.com/recipes/complexSearch?apiKey=6ef51b25cd0745d9bf79bb3cd0b35bbc&maxFat=25&number=4", { params: { query: valores.busqueda }})
                                     .then(res => {
                                         setDishesData(null);
                                         setDishesData(res.data);
@@ -54,6 +55,7 @@ function HomePage() {
                                     })
                                     .catch(error => {
                                         console.log("error: ", error);
+                                        swal(String(error));
                                     });
                                 }}
                                 >

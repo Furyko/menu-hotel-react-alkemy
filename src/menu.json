@@ -16,14 +16,14 @@
         },
         {
             "title": "Plato 3",
-            "image": "https://spoonacular.com/recipeImages/654857-312x231.jpg",
+            "image": "https://spoonacular.com/recipeImages/664284-312x231.jpg",
             "precio": 300.5,
             "healtScore": 62,
             "vegano": false
         },
         {
             "title": "Plato 4",
-            "image": "https://spoonacular.com/recipeImages/654857-312x231.jpg",
+            "image": "https://spoonacular.com/recipeImages/654883-312x231.jpg",
             "precio": 40.5,
             "healtScore": 29,
             "vegano": true

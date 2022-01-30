@@ -8,7 +8,7 @@ class Menu extends Component {
         super();
         this.state = {
             menu: menu.menu
-        }
+        };
     }
 
     render() {
@@ -25,7 +25,7 @@ class Menu extends Component {
             ]}
         return (
             <div>
-                { menuLength ? <Dishes dishes={this.state.menu} addMethod={this.addDishToMenu}/> : <Dishes dishes={emptyMenu.menu}/>}
+                { menuLength ? <Dishes dishes={this.state.menu}/> : <Dishes dishes={emptyMenu.menu}/>}
             </div>
         )
     }
